@@ -1,0 +1,19 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>Vagrant - Tag - Fabio Pezzini</title>
+        <link>https://FabioPezzini.github.io/tags/vagrant/</link>
+        <description>Vagrant - Tag - Fabio Pezzini</description>
+        <generator>Hugo -- gohugo.io</generator><language>en</language><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Fri, 01 May 2020 00:00:00 &#43;0000</lastBuildDate><atom:link href="https://FabioPezzini.github.io/tags/vagrant/" rel="self" type="application/rss+xml" /><item>
+    <title>Vagrant</title>
+    <link>https://FabioPezzini.github.io/vagrant/</link>
+    <pubDate>Fri, 01 May 2020 00:00:00 &#43;0000</pubDate>
+    <author>Author</author>
+    <guid>https://FabioPezzini.github.io/vagrant/</guid>
+    <description><![CDATA[<div class="featured-image">
+                <img src="/images/vagrant/index.png" referrerpolicy="no-referrer">
+            </div>Box Download Box It is possible to download from the Vagrant Cloud some images pre-created by users and the hashicorp. From shell just type:
+1  vagrant box add hashicorp/precise64   This will download (if not already present in the image list) the box precise64 ie an Ubuntu 12.04 64 bit system.
+Box List To view the list of all the boxes present (downloaded), just type:
+1  vagrant box list   Delete Box To delete a Box from a shell just type:]]></description>
+</item></channel>
+</rss>

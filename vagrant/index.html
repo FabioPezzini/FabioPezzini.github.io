@@ -1,0 +1,739 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+        <title>Vagrant - Fabio Pezzini</title><meta name="Description" content="This article shows the basic Vagrant syntax and format."><meta property="og:title" content="Vagrant" />
+<meta property="og:description" content="This article shows the basic Vagrant syntax and format." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://FabioPezzini.github.io/vagrant/" />
+<meta property="article:published_time" content="2020-05-01T00:00:00+00:00" />
+<meta property="article:modified_time" content="2020-05-01T00:00:00+00:00" />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Vagrant"/>
+<meta name="twitter:description" content="This article shows the basic Vagrant syntax and format."/>
+<meta name="application-name" content="Fabio Pezzini">
+<meta name="apple-mobile-web-app-title" content="Fabio Pezzini"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://FabioPezzini.github.io/vagrant/" /><link rel="prev" href="https://FabioPezzini.github.io/chef/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "Vagrant",
+        "inLanguage": "en",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/FabioPezzini.github.io\/vagrant\/"
+        },"genre": "posts","keywords": "Vagrant, VM","wordcount":  2117 ,
+        "url": "https:\/\/FabioPezzini.github.io\/vagrant\/","datePublished": "2020-05-01T00:00:00+00:00","dateModified": "2020-05-01T00:00:00+00:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+            "@type": "Organization",
+            "name": "xxxx"},"author": {
+                "@type": "Person",
+                "name": "Fabio"
+            },"description": "This article shows the basic Vagrant syntax and format."
+    }
+    </script></head>
+    <body header-desktop="fixed" header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('dark' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'dark' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="Fabio Pezzini">&gt; cd /home/fabio</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/about/" title="About Me"> About </a><a class="menu-item" href="/categories/" title="Categories"> Categories </a><a class="menu-item" href="/posts/" title="Notes"> Notes </a><a class="menu-item" href="/projects" title="Projects"> Projects </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="Search">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="Clear">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="Fabio Pezzini">&gt; cd /home/fabio</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="Search">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="Clear">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        Cancel
+                    </a>
+                </div><a class="menu-item" href="/about/" title="About Me">About</a><a class="menu-item" href="/categories/" title="Categories">Categories</a><a class="menu-item" href="/posts/" title="Notes">Notes</a><a class="menu-item" href="/projects" title="Projects">Projects</a><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                <i class="fas fa-adjust fa-fw"></i>
+            </a></div>
+    </div>
+</header>
+<div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div>
+<main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">Contents</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animated flipInX">Vagrant</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>Fabio</a></span>&nbsp;<span class="post-category">included in <a href="/categories/vagrant/"><i class="far fa-folder fa-fw"></i>Vagrant</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="01-05-2020">01-05-2020</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;2117 words&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;10 minutes&nbsp;</div>
+        </div><div class="featured-image"><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="/images/vagrant/index.png"
+        data-srcset="/images/vagrant/index.png, /images/vagrant/index.png 1.5x, /images/vagrant/index.png 2x"
+        data-sizes="auto"
+        alt="/images/vagrant/index.png"
+        title="This article shows the basic Vagrant syntax and format." /></div><div class="details toc" id="toc-static"  kept="">
+                <div class="details-summary toc-title">
+                    <span>Contents</span>
+                    <span><i class="details-icon fas fa-angle-right"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#box">Box</a>
+      <ul>
+        <li><a href="#download-box">Download Box</a></li>
+        <li><a href="#box-list">Box List</a></li>
+        <li><a href="#delete-box">Delete Box</a></li>
+        <li><a href="#base-box">Base Box</a></li>
+      </ul>
+    </li>
+    <li><a href="#initialize-vagrant-box">Initialize Vagrant Box</a></li>
+    <li><a href="#management-vagrant-project">Management Vagrant Project</a></li>
+    <li><a href="#start-vagrant-project">Start Vagrant Project</a>
+      <ul>
+        <li><a href="#first-start">First Start</a></li>
+        <li><a href="#generic-start">Generic Start</a></li>
+      </ul>
+    </li>
+    <li><a href="#status-vagrant-project">Status Vagrant Project</a>
+      <ul>
+        <li><a href="#vagrant-status">Vagrant Status</a></li>
+        <li><a href="#vagrant-global-status">Vagrant Global Status</a></li>
+      </ul>
+    </li>
+    <li><a href="#networking-configurations">Networking Configurations</a></li>
+    <li><a href="#vagrantfiles">Vagrantfiles</a>
+      <ul>
+        <li><a href="#base-vagrantfilevagrantfilesvagrantfile_base"><a href="../vagrantfiles/Vagrantfile_base">Base Vagrantfile</a></a></li>
+        <li><a href="#networking-settings">Networking Settings</a>
+          <ul>
+            <li><a href="#private-network">Private Network</a></li>
+            <li><a href="#public-network">Public Network</a></li>
+            <li><a href="#forwarded-portsvagrantfilesvagrantfile_forwardedport"><a href="../vagrantfiles/Vagrantfile_forwardedport">Forwarded Ports</a></a></li>
+          </ul>
+        </li>
+        <li><a href="#provider-settings">Provider Settings</a></li>
+        <li><a href="#multi-machinevagrantfilesvagrantfile_multi_machine"><a href="../vagrantfiles/Vagrantfile_multi_machine">Multi Machine</a></a></li>
+        <li><a href="#provisioning">Provisioning</a></li>
+      </ul>
+    </li>
+    <li><a href="#questions">Questions</a></li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><h2 id="box">Box</h2>
+<h3 id="download-box">Download Box</h3>
+<p>It is possible to download from the <a href="https://app.vagrantup.com/boxes/search" target="_blank" rel="noopener noreffer">Vagrant Cloud</a>
+some images pre-created by users and the hashicorp.
+From shell just type:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-sh" data-lang="sh">vagrant box add hashicorp/precise64
+</code></pre></td></tr></table>
+</div>
+</div><p>This will download (if not already present in the image list)
+the box precise64 ie an Ubuntu 12.04 64 bit system.</p>
+<h3 id="box-list">Box List</h3>
+<p>To view the list of all the boxes present (downloaded), just type:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-sh" data-lang="sh">vagrant box list
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="delete-box">Delete Box</h3>
+<p>To delete a Box from a shell just type:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-sh" data-lang="sh">vagrant delete hashicorp/precis64
+</code></pre></td></tr></table>
+</div>
+</div><p>It is necessary to pass the id of the box to delete the selected box.</p>
+<h3 id="base-box">Base Box</h3>
+<p>Vagrant provides BaseBox, that is a minimal image of an OS.
+An example of a BaseBox that can be found on the VagrantCloud is ubuntu/bionic64.
+In a BaseBox there are:</p>
+<ul>
+<li>Package manager</li>
+<li>SSH</li>
+<li>SSH user so Vagrant can connect</li>
+<li>Chef, Puppet, etc. but not strictly required.</li>
+</ul>
+<p>For advanced users it can be useful to create customized
+BaseBoxes (that are provider-specific).
+Since the topic is very large (memory settings, disk, peripherals, &hellip;)
+all the informations are avaible <a href="https://www.vagrantup.com/docs/boxes/base.html" target="_blank" rel="noopener noreffer">here</a>.
+Furthermore Vagrant has a suite that allows you to automate the creation of BaseBox called <a href="https://www.packer.io/" target="_blank" rel="noopener noreffer">Packer</a>.
+For most users the boxes on the VagrantCloud are enough.</p>
+<h2 id="initialize-vagrant-box">Initialize Vagrant Box</h2>
+<p>Each project in Vagrant must be placed in a personal directory,
+and to work with it you need to move to the
+chosen project. It is necessary to create a new directory, move
+inside it and initialize the project</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-sh" data-lang="sh">mkdir project1
+<span class="nb">cd</span> project1
+vagrant init hashicorp/precise64
+</code></pre></td></tr></table>
+</div>
+</div><p>This will create a <code>Vagrantfile</code> file containing all the
+characteristics of the project, in this case it will be:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">Vagrant.configure (&#34;2&#34;) do | config |
+   config.vm.box = &#34;hashicorp/precise64&#34;
+end
+</code></pre></td></tr></table>
+</div>
+</div><p>Now all we have is a VM (not started) based on Ubuntu 12.04 64 bit.</p>
+<p>Here are presented some useful flag:</p>
+<ul>
+<li>Create a minimal Vagrantfile (no comments or helpers):</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-sh" data-lang="sh">vagrant init -m hashicorp/precise64
+</code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>Create a new Vagrantfile, overwriting the one at the current path:</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-sh" data-lang="sh">vagrant init -f hashicorp/precise64
+</code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>Create a Vagrantfile with the specific box, from the specific box URL:</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-sh" data-lang="sh">vagrant init my-company-box https://boxes.company.com/my-company.box
+</code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>Create a Vagrantfile, locking the box to a version constraint:</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-sh" data-lang="sh">vagrant init --box-version <span class="s1">&#39;&gt; 0.1.5&#39;</span> hashicorp/precise64
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="management-vagrant-project">Management Vagrant Project</h2>
+<p>Vagrant provides several commands to interact with the VMs:</p>
+<ul>
+<li>Stop the VM:</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-sh" data-lang="sh">vagrant halt
+</code></pre></td></tr></table>
+</div>
+</div><p>if it is used in a folder containing several VMs are all
+stopped unless unless the id of the VM to be stopped is passed.</p>
+<ul>
+<li>Suspend the VM:</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-sh" data-lang="sh">vagrant <span class="nb">suspend</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>if it is used in a folder containing several
+VMs are all suspended unless the id of the VM to be suspended is passed.</p>
+<ul>
+<li>Delete the VM:</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-sh" data-lang="sh">vagrant destroy
+</code></pre></td></tr></table>
+</div>
+</div><p>this command is a bit different from the previous ones, in fact if executed
+inside a folder containing a project with multiple VMs, from there
+possibility to choose in an interactive way which to delete and
+which not; instead if the id is specified it is possible to delete the
+VM wherever it is.</p>
+<ul>
+<li>Interact with the VM:
+After the VM has been activated, an SSH session can be started
+moving within the project directory and declaring
+the hostname of the VM to use</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-sh" data-lang="sh"><span class="nb">cd</span> project1
+vagrant ssh
+</code></pre></td></tr></table>
+</div>
+</div><p>From now on you will have control over the VM, to close the
+session just press CTRL + D or</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-sh" data-lang="sh"><span class="nb">logout</span>
+</code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>Shared folders
+It is possible to share resources between the host machine and the
+guest machine (VM) if they are contained within
+of the folder containing the VagrantFile, to verify it
+once the SSH session with the VM is open, just type</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-sh" data-lang="sh">ls /vagrant
+</code></pre></td></tr></table>
+</div>
+</div><p>All that is present in the folder is visible either
+from the host to the guest.</p>
+<h2 id="start-vagrant-project">Start Vagrant Project</h2>
+<h3 id="first-start">First Start</h3>
+<p>If the project has just been initialized to start the VM you need to
+move inside the project folder and start it:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-sh" data-lang="sh"><span class="nb">cd</span> project1
+vagrant up
+</code></pre></td></tr></table>
+</div>
+</div><p>In this way provisioning is forced (performed through Shell,
+Chef, Puppet, &hellip;) and the guest system is started.</p>
+<h3 id="generic-start">Generic Start</h3>
+<p>If the project has already been started previously is recommend for
+start it using the command:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-sh" data-lang="sh"><span class="nb">cd</span> project1
+vagrant reload
+</code></pre></td></tr></table>
+</div>
+</div><p>This command allows the machine to start without them coming
+perform the reloading operations on the provisioning, if they have been
+carried out provisioning operations to make them effective is
+necessary to launch:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-sh" data-lang="sh"><span class="nb">cd</span> project1
+vagrant reload --provision
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="status-vagrant-project">Status Vagrant Project</h2>
+<p>To view the status of the VMs there are two commands to execute
+in different positions:</p>
+<ul>
+<li>vagrant status (local)</li>
+<li>vagrant global status (global)</li>
+</ul>
+<p>The status are three:</p>
+<ul>
+<li><code>not created</code></li>
+<li><code>running</code></li>
+<li><code>stopped</code></li>
+</ul>
+<h3 id="vagrant-status">Vagrant Status</h3>
+<p>This command returns the status of the vm:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-sh" data-lang="sh"><span class="nb">cd</span> project1
+vagrant status
+</code></pre></td></tr></table>
+</div>
+</div><p>It will return the status of the machines based on where it is executed (eg project1):</p>
+<h3 id="vagrant-global-status">Vagrant Global Status</h3>
+<p>This command allows us to view the status of all the VMs previously created.
+Often the status is not updated so is recommended to force the reload of the status:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-sh" data-lang="sh">vagrant global-status --prune
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="networking-configurations">Networking Configurations</h2>
+<p>Each of the networking adapters can be separately configured
+to operate in one of the following modes:</p>
+<ul>
+<li>NAT: abbreviation of Network Address Translation,
+a VM with NAT acts like a real computer that
+connects to the Internet through a router, in this
+case the Virtualbox Networking Engine. Used for example,
+for browse Web,download file, view email,&hellip; inside the guest.</li>
+<li>NAT Network: Virtualbox behaves like a DHCP server by
+assigning an IP to the guest but from a different address space.
+Shortly is a type of internal network that allow outbounds connections.<br>
+N.B = create a NAT Network first, in VirtualBox click
+File-&gt;Preferences-&gt;Network-&gt;NAT Networks, assign a name
+a CIDR and entering support for DHCP.</li>
+<li>Bridged: with this configuration Virtualbox uses a network card on
+the host system and exchange network packets directly avoidind the
+host operating system&rsquo;s network stack.<br>
+N.B = In the VM Network settings you need to specify which network card
+you want to use.</li>
+<li>Internal: is protected network that is not accessible to the internet
+in general.</li>
+<li>Host Only: VMs in this network can connect to each other and the same
+would be reachable via your host machine but the VMs would not be able
+to access the outside external network.</li>
+<li>Generic: rarely used modes which share the same generic network
+interface, by allowing the user to select a driver which can be included
+with Oracle VM VirtualBox or be distributed in an extension pack.</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>Question</th>
+<th>NAT</th>
+<th>NAT Network</th>
+<th>Bridged</th>
+<th>Internal</th>
+<th>Host Only</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Can VM connect to Host?</td>
+<td>Yes</td>
+<td>Yes</td>
+<td>Yes</td>
+<td>No</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>Can Host connect to Vm?</td>
+<td>PF</td>
+<td>PF</td>
+<td>Yes</td>
+<td>No</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>Can VM connect to external network?</td>
+<td>Yes</td>
+<td>Yes</td>
+<td>Yes</td>
+<td>No</td>
+<td>No</td>
+</tr>
+<tr>
+<td>Can VM connect another VMS in the same network?</td>
+<td>No</td>
+<td>Yes</td>
+<td>Yes</td>
+<td>Yes</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>Can other computers on the external network connect to VM?</td>
+<td>PF</td>
+<td>PF</td>
+<td>Yes</td>
+<td>No</td>
+<td>No</td>
+</tr>
+</tbody>
+</table>
+<p><strong>PF means that is not default but can achieve that doing a port forward</strong></p>
+<p><a href="https://www.virtualbox.org/manual/ch06.html#natforward" target="_blank" rel="noopener noreffer">More info from here</a></p>
+<h2 id="vagrantfiles">Vagrantfiles</h2>
+<p>VagrantFile is the heart of Vagrant, it allows us to define
+all project specifications. For each project it is allowed
+just a Vagrant file.<br>
+N.B = if you want to use the Vagrant files commented below
+it is necessary to rename the files in Vagrantfile</p>
+<h3 id="base-vagrantfilevagrantfilesvagrantfile_base"><a href="../vagrantfiles/Vagrantfile_base" rel="">Base Vagrantfile</a></h3>
+<p>This Vagrantfile is the standard one created at the
+<code>init</code> of the project.
+This Vagrantfile create a single VM with a specific box.</p>
+<h3 id="networking-settings">Networking Settings</h3>
+<p>In Vagrant the adapter n.1 (eth0) is always a NAT adapter
+because is used from the Host to communicate with the Guest via SSH.</p>
+<h4 id="private-network">Private Network</h4>
+<p>Vagrant private networks allow you to access your guest machine
+by some address that is not publicly accessible from the global Internet.</p>
+<ul>
+<li>
+<p><a href="../vagrantfiles/Vagrantfile_privatenetwork_host_only" rel="">Host Only</a>:
+By default, private networks are host-only networks,
+because those are the easiest to work with.
+Behind the scene, VirtualBox creates a new virtual interface (&ldquo;loopback&rdquo;)
+on the host which appears next to the existing network interfaces.
+VirtualBox even provide a built-in DHCP server for host-only networking
+if no static IPs have been assigned.</p>
+</li>
+<li>
+<p><a href="../vagrantfiles/Vagrantfile_privatenetwork_internal" rel="">Internal Network</a>:
+The Vagrant VirtualBox provider supports using the private network as
+a VirtualBox internal network. By default, private networks are host-only
+networks, because those are the easiest to work with. However,
+internal networks can be enabled as well.</p>
+</li>
+</ul>
+<h4 id="public-network">Public Network</h4>
+<p>Vagrant public networks are less private than private networks,
+and the exact meaning actually varies from provider to provider,
+hence the ambiguous definition. The idea is that while private
+networks should never allow the general public access to your
+machine, public networks can.
+It&rsquo;s a Bridged Network.</p>
+<ul>
+<li><a href="../vagrantfiles/Vagrantfile_publicnetwork" rel="">Bridged</a></li>
+</ul>
+<h4 id="forwarded-portsvagrantfilesvagrantfile_forwardedport"><a href="../vagrantfiles/Vagrantfile_forwardedport" rel="">Forwarded Ports</a></h4>
+<p>Vagrant forwarded ports allow you to access a port on your host
+machine and have all data forwarded to a port on the guest machine,
+over either TCP or UDP.
+For example: If the guest machine is running a web server listening
+on port 80, you can make a forwarded port mapping to port 8080
+(or anything) on your host machine. You can then open your browser
+to localhost:8080 and browse the website, while all actual network
+data is being sent to the guest.</p>
+<h3 id="provider-settings">Provider Settings</h3>
+<p>While well-behaved Vagrant providers should work with any Vagrantfile
+with sane defaults, providers generally expose unique configuration
+options so that you can get the most out of each provider.
+This provider-specific configuration is done within the Vagrantfile
+in a way that is portable, easy to use, and easy to understand.</p>
+<ul>
+<li><a href="../vagrantfiles/Vagrantfile_provider" rel="">VirtualBox</a>:
+VBoxManage is a utility that can be used to make modifications to
+VirtualBox virtual machines from the command line.
+Vagrant exposes a way to call any command against VBoxManage
+just prior to booting the machine.
+<a href="https://www.virtualbox.org/manual/ch08.html" target="_blank" rel="noopener noreffer">Here</a> several commands
+are presented.</li>
+</ul>
+<h3 id="multi-machinevagrantfilesvagrantfile_multi_machine"><a href="../vagrantfiles/Vagrantfile_multi_machine" rel="">Multi Machine</a></h3>
+<p>Vagrant is able to define and control multiple guest machines per
+Vagrantfile. This is known as a &ldquo;multi-machine&rdquo; environment.
+These machines are generally able to work together or are somehow
+associated with each other.</p>
+<ul>
+<li>
+<p><a href="../vagrantfiles/Vagrantfile_multi_sameprovider" rel="">Multi with same Provider</a>
+This will create a lab with 3 machine, <code>ubonda</code> has access to internet
+with a bridged interface; the other two are in a private network
+and can communicate only with each other but not with <code>ubonda</code>.
+It is necessary to declare a <code>virtualbox__intnet: true</code> to isolate the two
+machine or <code>ubonda</code> will connect to them.</p>
+</li>
+<li>
+<p><a href="../vagrantfiles/Vagrantfile_multiprovider_subnet" rel="">Multi with different Provider</a>
+In this lab I will use 3 machines:</p>
+<ol>
+<li><code>ubonda</code> a vm created with Virtualbox that can navigate through internet and
+connect to <code>slave-connector</code></li>
+<li><code>slave-connector</code> a container created with Docker that is in a subnet with
+another container <code>slave</code>and can communicate with <code>ubonda</code></li>
+<li><code>slave</code> a container created with Docker that is in a subnet with <code>slave-connector</code>
+First of all create a docker network to connect <code>ubonda</code> with <code>slave-connector</code>:</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-sh" data-lang="sh">docker network create bridge2 --gateway<span class="o">=</span>192.168.50.1 --subnet<span class="o">=</span>192.168.50.1/24
+</code></pre></td></tr></table>
+</div>
+</div><p>Then check the network id just created:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-sh" data-lang="sh">docker network ls
+</code></pre></td></tr></table>
+</div>
+</div><p>Finally put the id in the <code>public network</code> in the Vagrantfile.
+Remember to use the <code>docker_network__internal: true</code> to create a private
+network for the containers.</p>
+</li>
+</ul>
+<h3 id="provisioning">Provisioning</h3>
+<p>Provisioners in Vagrant allow you to automatically install software,
+alter configurations, and more on the machine as part of the vagrant up
+process.<br>
+This is useful since boxes typically are not built perfectly for your use
+case. Of course, if you want to just use vagrant ssh and install the
+software by hand, that works. But by using the provisioning systems
+built-in to Vagrant, it automates the process so that it is repeatable.</p>
+<ul>
+<li>
+<p><a href="../vagrantfiles/Vagrantfile_shellprovision" rel="">Shell Provisioning</a>:
+The Vagrant Shell provisioner allows you to upload and execute a
+script within the guest machine.
+Shell provisioning is ideal for users new to Vagrant who want
+to get up and running quickly.</p>
+</li>
+<li>
+<p><a href="../vagrantfiles/Vagrantfile_puppetprovision" rel="">Puppet Provisioning</a>:
+N.B = puppet need to be installed in the guest vm.<br>
+By default, Vagrant will configure Puppet to look for manifests in the &ldquo;manifests&rdquo;
+folder relative to the project root, and will use the &ldquo;default.pp&rdquo; manifest as an entry-point.
+In my case i use <a href="../vagrantfiles/ubonda.pp" rel="">ubonda.pp</a> in this file you have to insert
+the modules present in the modules folder and that you want to install.
+Every modules need to contain an <a href="../vagrantfiles/init.pp" rel="">init.pp</a>, a file containing all
+the services, packages and commands to be executed, the syntax is in Puppet Language.</p>
+</li>
+</ul>
+<h2 id="questions">Questions</h2>
+<ul>
+<li><strong>It is possible to use two or more provider on a single Vagrantfile
+different providers?</strong>
+<em>Yes,for example you can use VirtualBox and Docker as provider,
+remember to start the docker service or vagrant will use
+virtualbox as default provider instead of Virtualbox.</em></li>
+<li><strong>It is possible to use a single VM with two providers
+different at the same time?</strong>
+<em>No, trying to do so returns an error that explains
+that the function will be introduced in later versions.</em></li>
+<li><strong>Convert the Docker image into a Vagrant box?</strong>
+<em>It is possible to do so, <a href="https://stackoverflow.com/questions/23436613/how-can-i-convert-a-docker-image-into-a-vagrant-virtualbox-box" target="_blank" rel="noopener noreffer">here</a> there is a tutorial</em></li>
+</ul>
+</div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>Updated on 01-05-2020</span>
+            </div>
+            <div class="post-info-license"></div>
+        </div>
+        <div class="post-info-line">
+            <div class="post-info-md"><span>
+                            <a class="link-to-markdown" href="/vagrant/index.md" target="_blank">Read Markdown</a>
+                        </span></div>
+            <div class="post-info-share">
+                <span><a href="javascript:void(0);" title="Share on Twitter" data-sharer="twitter" data-url="https://FabioPezzini.github.io/vagrant/" data-title="Vagrant" data-via="......." data-hashtags="Vagrant,VM"><i class="fab fa-twitter fa-fw"></i></a><a href="javascript:void(0);" title="Share on Facebook" data-sharer="facebook" data-url="https://FabioPezzini.github.io/vagrant/" data-hashtag="Vagrant"><i class="fab fa-facebook-square fa-fw"></i></a><a href="javascript:void(0);" title="Share on WhatsApp" data-sharer="whatsapp" data-url="https://FabioPezzini.github.io/vagrant/" data-title="Vagrant" data-web><i class="fab fa-whatsapp fa-fw"></i></a><a href="javascript:void(0);" title="Share on Line" data-sharer="line" data-url="https://FabioPezzini.github.io/vagrant/" data-title="Vagrant"><i data-svg-src="/lib/simple-icons/icons/line.min.svg"></i></a><a href="javascript:void(0);" title="Share on 微博" data-sharer="weibo" data-url="https://FabioPezzini.github.io/vagrant/" data-title="Vagrant" data-image="/images/vagrant/index.png"><i class="fab fa-weibo fa-fw"></i></a><a href="javascript:void(0);" title="Share on Myspace" data-sharer="myspace" data-url="https://FabioPezzini.github.io/vagrant/" data-title="Vagrant" data-description="This article shows the basic Vagrant syntax and format."><i data-svg-src="/lib/simple-icons/icons/myspace.min.svg"></i></a><a href="javascript:void(0);" title="Share on Blogger" data-sharer="blogger" data-url="https://FabioPezzini.github.io/vagrant/" data-title="Vagrant" data-description="This article shows the basic Vagrant syntax and format."><i class="fab fa-blogger fa-fw"></i></a><a href="javascript:void(0);" title="Share on Evernote" data-sharer="evernote" data-url="https://FabioPezzini.github.io/vagrant/" data-title="Vagrant"><i class="fab fa-evernote fa-fw"></i></a></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/vagrant/">Vagrant</a>,&nbsp;<a href="/tags/vm/">VM</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/chef/" class="prev" rel="prev" title="Chef-Solo"><i class="fas fa-angle-left fa-fw"></i>Chef-Solo</a></div>
+</div>
+</article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2020 - 2021</span>&nbsp;|&nbsp;<span class="license">Fabio Pezzini</span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="Back to Top">
+                <i class="fas fa-arrow-up fa-fw"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="View Comments">
+                <i class="fas fa-comment fa-fw"></i>
+            </a>
+        </div><link rel="stylesheet" href="/lib/lightgallery/lightgallery.min.css"><script type="text/javascript" src="/lib/smooth-scroll/smooth-scroll.min.js"></script><script type="text/javascript" src="/lib/autocomplete/autocomplete.min.js"></script><script type="text/javascript" src="/lib/lunr/lunr.min.js"></script><script type="text/javascript" src="/lib/lazysizes/lazysizes.min.js"></script><script type="text/javascript" src="/lib/lightgallery/lightgallery.min.js"></script><script type="text/javascript" src="/lib/lightgallery/lg-thumbnail.min.js"></script><script type="text/javascript" src="/lib/lightgallery/lg-zoom.min.js"></script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/sharer/sharer.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":10},"comment":{},"lightGallery":{"actualSize":false,"exThumbImage":"data-thumbnail","hideBarsDelay":2000,"selector":".lightgallery","speed":400,"thumbContHeight":80,"thumbWidth":80,"thumbnail":true},"search":{"highlightTag":"em","lunrIndexURL":"/index.json","maxResultLength":10,"noResultsFound":"No results found","snippetLength":30,"type":"lunr"}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+</html>

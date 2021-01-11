@@ -1,0 +1,988 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+        <title>Chef-Solo - Fabio Pezzini</title><meta name="Description" content="This article shows the basic Chef-Solo syntax and format."><meta property="og:title" content="Chef-Solo" />
+<meta property="og:description" content="This article shows the basic Chef-Solo syntax and format." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://FabioPezzini.github.io/chef/" />
+<meta property="article:published_time" content="2020-05-07T00:00:00+00:00" />
+<meta property="article:modified_time" content="2020-05-07T00:00:00+00:00" />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Chef-Solo"/>
+<meta name="twitter:description" content="This article shows the basic Chef-Solo syntax and format."/>
+<meta name="application-name" content="Fabio Pezzini">
+<meta name="apple-mobile-web-app-title" content="Fabio Pezzini"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://FabioPezzini.github.io/chef/" /><link rel="next" href="https://FabioPezzini.github.io/vagrant/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "Chef-Solo",
+        "inLanguage": "en",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/FabioPezzini.github.io\/chef\/"
+        },"genre": "posts","keywords": "Chef, Orchestration, DevOps","wordcount":  2459 ,
+        "url": "https:\/\/FabioPezzini.github.io\/chef\/","datePublished": "2020-05-07T00:00:00+00:00","dateModified": "2020-05-07T00:00:00+00:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+            "@type": "Organization",
+            "name": "xxxx"},"author": {
+                "@type": "Person",
+                "name": "Fabio"
+            },"description": "This article shows the basic Chef-Solo syntax and format."
+    }
+    </script></head>
+    <body header-desktop="fixed" header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('dark' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'dark' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="Fabio Pezzini">&gt; cd /home/fabio</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/about/" title="About Me"> About </a><a class="menu-item" href="/categories/" title="Categories"> Categories </a><a class="menu-item" href="/posts/" title="Notes"> Notes </a><a class="menu-item" href="/projects" title="Projects"> Projects </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="Search">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="Clear">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="Fabio Pezzini">&gt; cd /home/fabio</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="Search">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="Clear">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        Cancel
+                    </a>
+                </div><a class="menu-item" href="/about/" title="About Me">About</a><a class="menu-item" href="/categories/" title="Categories">Categories</a><a class="menu-item" href="/posts/" title="Notes">Notes</a><a class="menu-item" href="/projects" title="Projects">Projects</a><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                <i class="fas fa-adjust fa-fw"></i>
+            </a></div>
+    </div>
+</header>
+<div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div>
+<main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">Contents</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animated flipInX">Chef-Solo</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>Fabio</a></span>&nbsp;<span class="post-category">included in <a href="/categories/chef-solo/"><i class="far fa-folder fa-fw"></i>Chef-Solo</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="07-05-2020">07-05-2020</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;2459 words&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;12 minutes&nbsp;</div>
+        </div><div class="featured-image"><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="/images/chef/index.png"
+        data-srcset="/images/chef/index.png, /images/chef/index.png 1.5x, /images/chef/index.png 2x"
+        data-sizes="auto"
+        alt="/images/chef/index.png"
+        title="This article shows the basic Chef-Solo syntax and format." /></div><div class="details toc" id="toc-static"  kept="">
+                <div class="details-summary toc-title">
+                    <span>Contents</span>
+                    <span><i class="details-icon fas fa-angle-right"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#terminology">Terminology</a></li>
+    <li><a href="#initialize-the-project">Initialize the Project</a>
+      <ul>
+        <li><a href="#knife">Knife</a></li>
+        <li><a href="#librarian-or-berkshelf">Librarian (or BerkShelf)</a></li>
+        <li><a href="#kitchen">Kitchen</a></li>
+      </ul>
+    </li>
+    <li><a href="#resource">Resource</a>
+      <ul>
+        <li><a href="#platform-resource">Platform Resource</a></li>
+        <li><a href="#custom-resource">Custom Resource</a></li>
+      </ul>
+    </li>
+    <li><a href="#recipes">Recipes</a></li>
+    <li><a href="#cookbooks">Cookbooks</a>
+      <ul>
+        <li><a href="#vendor-cookbooks">Vendor Cookbooks</a>
+          <ul>
+            <li><a href="#using-librarian">Using Librarian</a></li>
+            <li><a href="#using-berkshelf">Using BerkShelf</a></li>
+          </ul>
+        </li>
+        <li><a href="#site-cookbooks">Site Cookbooks</a></li>
+      </ul>
+    </li>
+    <li><a href="#nodes">Nodes</a></li>
+    <li><a href="#roles">Roles</a></li>
+    <li><a href="#data-bags">Data Bags</a></li>
+    <li><a href="#examples">Examples</a>
+      <ul>
+        <li><a href="#example-cookbook">Example Cookbook</a></li>
+      </ul>
+    </li>
+    <li><a href="#structure">Structure</a>
+      <ul>
+        <li><a href="#example-databag">Example Databag</a></li>
+        <li><a href="#example-recipe">Example Recipe</a></li>
+        <li><a href="#example-resource">Example Resource</a>
+          <ul>
+            <li><a href="#platform-resource-1">Platform Resource</a></li>
+            <li><a href="#custom-resource-1">Custom Resource</a></li>
+          </ul>
+        </li>
+        <li><a href="#example-role">Example Role</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><h2 id="terminology">Terminology</h2>
+<ul>
+<li>Node: The deployment target - this is what configured, has chef-client or chef-solo installed</li>
+<li>Chef Client: a command line tool that configures servers.</li>
+<li>Chef Server: This is where all your code resides. It also contains all the information about nodes.
+N.B = combined with a Node when using Chef-Solo.</li>
+<li>Recipes - a single file of Ruby code that contains commands to run on a node.</li>
+<li>Resources - a node’s resources include files, directories, users and services.</li>
+<li>Cookbook - a collection of Chef recipes.</li>
+<li>Role: reusable configuration for multiple nodes.</li>
+<li>Attribute: variables that are passed through Chef and used in recipes and templates.</li>
+<li>Template: a file with placeholders for attributes, used to create configuration files.</li>
+<li>Chef-Solo: open source version on Chef Client, doesn’t require access to Chef Server,
+requires that a cookbook be on the same physical disk as the node.</li>
+<li>Knife-Solo: provides interface between local Chef-Repo and Chef Server.</li>
+<li>Berkshelf: manages cookbooks and their dependencies (like bundler for rubygems).</li>
+<li>Kitchen: chef-repo, located on workstation.</li>
+<li>WorkStation: local machine aka your laptop. This is where you write your code which
+is then pushed to your chef server. N.B = push to a Node with Chef-Solo.</li>
+</ul>
+<h2 id="initialize-the-project">Initialize the Project</h2>
+<p>First create a folder, which will contain all our Chef kitchen:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-sh" data-lang="sh">mkdir example
+<span class="nb">cd</span> example
+</code></pre></td></tr></table>
+</div>
+</div><p>Use a bundler to install some gems or install it via shell</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-sh" data-lang="sh">gem install knife-solo
+gem install librarian-chef
+</code></pre></td></tr></table>
+</div>
+</div><p>Create a new Kitchen in current directory:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-sh" data-lang="sh">knife solo init .
+</code></pre></td></tr></table>
+</div>
+</div><p>This will create a file structure like this:</p>
+<ul>
+<li><code>.chef/</code> : stores .pem files and knife.rb</li>
+<li><code>cookbooks/</code> : vendor cookbooks installed with librarian</li>
+<li><code>data_bags/</code> : data bags</li>
+<li><code>environments/</code> : environments</li>
+<li><code>nodes/</code> : nodes</li>
+<li><code>roles/</code> : roles</li>
+<li><code>site-cookbooks/</code> : custom cookbooks</li>
+</ul>
+<p>Some useful recap about the used gems:</p>
+<h3 id="knife">Knife</h3>
+<p>Provides interface between local Chef Repo and Chef Server.
+Knife-Solo adds 5 subcommands to the classic Knife:</p>
+<ul>
+<li><code>knife solo init</code> (create a new kitchen)</li>
+<li><code>knife solo prepare</code> (install chef-solo on target host)</li>
+<li><code>knife solo cook</code> (upload current kitchen to target host and run chef-solo there)</li>
+<li><code>knife solo bootstrap</code> (prepare + cook)</li>
+<li><code>knife solo clean</code> (remove uploaded kitchen from target host)</li>
+</ul>
+<h3 id="librarian-or-berkshelf">Librarian (or BerkShelf)</h3>
+<p>They manages cookbooks and their dependencies (like bundler for rubygems).
+Librarian-Chef can resolve and fetch third-party, publicly-released cookbooks,
+and install them into your infrastructure repository. It can also source
+cookbooks directly from their own source control repositories.
+Librarian-Chef takes over your <code>cookbooks/</code> directory and manages it for you
+based on your Cheffile. Your Cheffile becomes the authoritative source for the
+cookbooks your infrastructure repository depends on. You should not modify the
+contents of your <code>cookbooks/</code> directory when using Librarian-Chef. If you have
+cookbooks which are, rather than being separate projects, inherently part of
+your infrastructure repository, then they should go in a separate directory,
+like your <code>site-cookbooks/</code> directory, and you do not need to use Librarian-Chef
+to manage them.
+Every infrastructure repository that uses Librarian-Chef will have a file named
+Cheffile in the root directory of that repository.</p>
+<h3 id="kitchen">Kitchen</h3>
+<p>It is a Chef Repo, is located on a workstation and uploaded to a node when using
+Chef-Solo (or to a Chef Server)</p>
+<h2 id="resource">Resource</h2>
+<p>A Chef resource describes one part of the system, such as a file,
+a template, or a package. A Chef recipe is a file that groups related
+resources, such as everything needed to configure a web server,
+database server, or a load balancer.
+There are 2 types of resources:</p>
+<ol>
+<li>Platform resource: are avaible in Chef Client directly, doesn&rsquo;t require
+a cookbook</li>
+<li>Custom resource: must be defined in a resource file located in the <code>resources/</code>
+folder; used in a Recipe in the same way as a platform resource</li>
+</ol>
+<p>Some examples <a href="../examples/ex_resource.md" rel="">here</a></p>
+<h3 id="platform-resource">Platform Resource</h3>
+<p>Syntax:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">TYPE &#39;NAME&#39; do
+  PROPERTY_NAME &#39;PROPERTY_VALUE&#39;
+  action :TYPE_OF_ACTION
+end
+</code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>type: platform resource types: package, template, service,&hellip;</li>
+<li>name: for platform resources dealing with files
+(directory, cookbook_file, etc.) this is usually the path of
+corresponding file on chef node.</li>
+</ul>
+<p>Popular platform resources:</p>
+<table>
+<thead>
+<tr>
+<th>Resource</th>
+<th>Desc</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>script</td>
+<td>execute script using specified interpretor</td>
+</tr>
+<tr>
+<td>bash</td>
+<td>execute script using Bash interpretor</td>
+</tr>
+<tr>
+<td>ruby</td>
+<td>execute script using Ruby interpretor</td>
+</tr>
+<tr>
+<td>link</td>
+<td>create sym or hard links</td>
+</tr>
+<tr>
+<td>directory</td>
+<td>manage directories</td>
+</tr>
+<tr>
+<td>cookbook_file</td>
+<td>transfer files from subdirectory of <code>files/</code></td>
+</tr>
+<tr>
+<td>template</td>
+<td>transfer files from subdirectory of <code>templates/</code></td>
+</tr>
+<tr>
+<td>package</td>
+<td>install package (rpm, deb, etc.)</td>
+</tr>
+<tr>
+<td>gem_package</td>
+<td>install gem system-wide</td>
+</tr>
+<tr>
+<td>chef_gem</td>
+<td>install gem into the instance of Ruby dedicated to chef-client</td>
+</tr>
+<tr>
+<td>cron</td>
+<td>modify cron entries</td>
+</tr>
+<tr>
+<td>user</td>
+<td>manage users</td>
+</tr>
+</tbody>
+</table>
+<h3 id="custom-resource">Custom Resource</h3>
+<p>A brief introduction to the custom resource.
+It declares properties of custom resource, loads current properties if resource
+already exists,defines all resource actions,</p>
+<p>Syntax:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">resource_name :httpd
+
+property :instance_name, String, name_property: true
+property :name, RubyType, default: &#39;value&#39;
+
+default_action :action_2
+
+load_current_value do
+  # some Ruby
+end
+
+action :action_1 do
+ # a mix of built-in Chef resources and Ruby
+end
+
+action :action_2 do
+ # a mix of built-in Chef resources and Ruby
+end
+</code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>resource_name overrides default resource name</li>
+<li>name_property: true makes this property to use resource name as its value</li>
+<li>load_current_value block loads current values for all properties</li>
+<li>default_action overrides default action</li>
+</ul>
+<h2 id="recipes">Recipes</h2>
+<p>A Chef cookbook is comprised of recipes that a nodes desired state.
+Recipes are written in Ruby and contain information about everything that needs
+to be run, changed, or created on a node. Recipes work as a collection of
+resources that determine the configuration or policy of a node, with resources
+being a configuration element of the recipe. For a node to run a recipe, it
+must be on that node’s run list.</p>
+<p>The dafault recipe (is necessary in every cookbook) is <code>default.rb</code>.</p>
+<p>Recipe can include other recipes from other cookbooks using include_recipe method:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">include_recipe &#39;apache2::mod_ssl&#39;
+</code></pre></td></tr></table>
+</div>
+</div><p>Included recipe must be declared as dependency in metadata.rb:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">depends &#39;apache2&#39;
+</code></pre></td></tr></table>
+</div>
+</div><p><a href="../examples/ex_recipe" rel="">Here</a> you can find an axemple of a recipe that is part of Chef’s Vim cookbook.
+It is in charge of installing the required Vim package based on a node’s Linux distribution.</p>
+<h2 id="cookbooks">Cookbooks</h2>
+<p>A cookbook is a collection of Chef Recipes. All cookbooks like a Chef are written in Ruby.</p>
+<p><a href="../examples/ex_cookbook.md" rel="">Here</a> you can find an example about the structure of a cookbook.</p>
+<h3 id="vendor-cookbooks">Vendor Cookbooks</h3>
+<h4 id="using-librarian">Using Librarian</h4>
+<p>Create a Cheffile in the directory of the project:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-sh" data-lang="sh">librarian-chef init
+</code></pre></td></tr></table>
+</div>
+</div><p>Add dependencies and their sources to the Cheffile:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">site &#39;https://supermarket.getchef.com/api/v1&#39;
+    cookbook &#39;ntp&#39;
+    cookbook &#39;timezone&#39;, &#39;0.0.1&#39;
+    cookbook &#39;rvm&#39;,
+      :git =&gt; &#39;https://github.com/fnichol/chef-rvm&#39;,
+      :ref =&gt; &#39;v0.7.1&#39;
+    cookbook &#39;cloudera&#39;,
+      :path =&gt; &#39;vendor/cookbooks/cloudera-cookbook&#39;
+</code></pre></td></tr></table>
+</div>
+</div><p>Then run:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">librarian-chef install
+</code></pre></td></tr></table>
+</div>
+</div><p>This command looks at each cookbook declaration and fetches the cookbook
+from the source specified, or from the default source if none is provided.
+Each cookbook is inspected, its dependencies are determined, and each dependency
+is also fetched. For example, if you declare cookbook &lsquo;nagios&rsquo;, which depends
+on other cookbooks such as &lsquo;php&rsquo;, then those other cookbooks including &lsquo;php&rsquo;
+will be fetched. This goes all the way down the chain of dependencies.
+This command then copies all of the fetched cookbooks into your <code>cookbooks/</code>
+directory, overwriting whatever was there before.</p>
+<h4 id="using-berkshelf">Using BerkShelf</h4>
+<p>In the directory of the project create a <code>Berksfile</code> and inside it write:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">cookbook &#39;apache2&#39;
+</code></pre></td></tr></table>
+</div>
+</div><p>Then run this to install cookbook globally into <code>~/.berkshelf/cookbooks/</code>:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-sh" data-lang="sh">berks install
+berks upload
+</code></pre></td></tr></table>
+</div>
+</div><p>Or run this to install cookbook both locally into <code>cookbooks/</code> and globally into
+<code>~/.bershelf/cookbooks/</code>:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-sh" data-lang="sh">berks vendor cookbooks
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="site-cookbooks">Site Cookbooks</h3>
+<p>Let’s create our cookbook. Our custom cookbooks should be
+in the folder <code>site-cookbooks/</code> (the folder <code>cookbooks/</code> is used for vendor
+cookbooks and managed by librarian or berkshelf)
+Create a custom Cookbook:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-sh" data-lang="sh"><span class="nb">cd</span> site-cookbooks/
+knife cookbook create Tomatoes
+</code></pre></td></tr></table>
+</div>
+</div><p>Then configure and add your service using the Recipes,Attributes,DataBags ecc.</p>
+<p>Lastly add the new recipe in the <code>run_list</code> of the project Node.</p>
+<h2 id="nodes">Nodes</h2>
+<p>Nodes are configured in node files for chef-solo only;
+chef-client interacts with chef server to retrieve node configuration.
+Consequently, node-specific attributes must be located in a
+JSON file on the target system, a remote location, or a web server on the local network.</p>
+<ul>
+<li>Nodes contains node-specific attributes and run-list</li>
+<li>Nodes represents machine (physical, virtual, etc.)</li>
+<li>Nodes separate JSON file for each node in <code>nodes/</code></li>
+</ul>
+<p>Node file name (as a rule): DOMAIN.json
+Create a <code>DOMAIN.json</code> in the <code>nodes</code> folder and write inside it:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">{
+  run_list: [
+        &#39;role[base]&#39;,
+        &#39;recipe[apache2]&#39;
+  ]
+}
+</code></pre></td></tr></table>
+</div>
+</div><p>N.B = <code>run_list</code> is the main key in a node file, the <code>default.rb</code> is executed when
+only cookbook name is specified without specific recipe.
+Run lists define which recipes a node will use. The run list is an ordered list
+of all roles and recipes that the chef-client needs to pull from the Chef server
+to run on a node. Roles are used to define patterns and attributes across nodes.
+N.B = We can use the <code>run_list</code> of a specific role declaring it in the <code>run_list</code> of the node.</p>
+<h2 id="roles">Roles</h2>
+<p>In most cases you project contain several servers with the same configuration.
+For example, you can have several web servers and one load balancer, which
+balance on this web servers. Or you can have several database or queue servers
+with identical configuration. In this case, it is very hard way to clone each
+server by nodes, because you need copy all attributes from one node to another.
+Maintain a system with such nodes also will be hard: you will have to modify
+the “n” number of nodes to change some attribute value. We can use role!
+A role provides a means of grouping similar features of similar nodes,
+providing a mechanism for easily composing sets of functionality.
+A Role is a server template (web, database, etc.),
+it contains server-specific run-list and attributes.
+Need to create separate JSON file for each role in <code>roles/</code>.
+The json file required:</p>
+<ul>
+<li>name : unique name (usually the same as file name)</li>
+<li>description</li>
+<li>chef_type : role</li>
+<li>json_class : Chef::Role</li>
+<li>run_list : role-specific run-list (may include other roles).</li>
+</ul>
+<p>An example of a role file can be found <a href="../examples/ex_role.json" rel="">Here</a></p>
+<h2 id="data-bags">Data Bags</h2>
+<p>Data Bag are global variable stored as JSON data;
+it is used to store sensitive data (credentials, etc.).
+data bag consists of data bag items: DATA_BAG/DATA_BAG_ITEM.json</p>
+<p>The structure is like this:</p>
+<ul>
+<li>name : unique name (usually the same as file name)</li>
+<li>chef_type : data_bag_item</li>
+<li>json_class : Chef::DataBagItem</li>
+<li>data_bag :  	data bag name</li>
+<li>raw_data : attributes of data bag item (id attribute is required)</li>
+</ul>
+<p>Example <a href="../examples/ex_databag.json" rel="">here</a></p>
+<h2 id="examples">Examples</h2>
+<h3 id="example-cookbook">Example Cookbook</h3>
+<h2 id="structure">Structure</h2>
+<p>A cookbook can have:</p>
+<ul>
+<li>metadata.rb - a file, which contain all information about the cookbook (name, dependencies).</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-go" data-lang="go"><span class="nx">name</span>              <span class="s">&#34;nginx&#34;</span>
+<span class="nx">maintainer</span>        <span class="s">&#34;Opscode, Inc.&#34;</span>
+<span class="nx">maintainer_email</span>  <span class="s">&#34;cookbooks@opscode.com&#34;</span>
+<span class="nx">license</span>           <span class="s">&#34;Apache 2.0&#34;</span>
+<span class="nx">description</span>       <span class="s">&#34;Installs and configures nginx&#34;</span>
+<span class="nx">version</span>           <span class="s">&#34;1.1.2&#34;</span>
+
+<span class="nx">recipe</span> <span class="s">&#34;nginx&#34;</span><span class="p">,</span> <span class="s">&#34;Installs nginx package and sets up configuration with Debian apache style with sites-enabled/sites-available&#34;</span>
+<span class="nx">recipe</span> <span class="s">&#34;nginx::source&#34;</span><span class="p">,</span> <span class="s">&#34;Installs nginx from source and sets up configuration with Debian apache style with sites-enabled/sites-available&#34;</span>
+
+<span class="o">%</span><span class="nx">w</span><span class="p">{</span> <span class="nx">ubuntu</span> <span class="nx">debian</span> <span class="nx">centos</span> <span class="nx">redhat</span> <span class="nx">amazon</span> <span class="nx">scientific</span> <span class="nx">oracle</span> <span class="nx">fedora</span> <span class="p">}.</span><span class="nx">each</span> <span class="nx">do</span> <span class="p">|</span><span class="nx">os</span><span class="p">|</span>
+ <span class="nx">supports</span> <span class="nx">os</span>
+<span class="nx">end</span>
+
+<span class="o">%</span><span class="nx">w</span><span class="p">{</span> <span class="nx">build</span><span class="o">-</span><span class="nx">essential</span> <span class="p">}.</span><span class="nx">each</span> <span class="nx">do</span> <span class="p">|</span><span class="nx">cb</span><span class="p">|</span>
+ <span class="nx">depends</span> <span class="nx">cb</span>
+<span class="nx">end</span>
+
+<span class="nx">depends</span> <span class="err">&#39;</span><span class="nx">ohai</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="o">&gt;=</span> <span class="mf">1.1.2</span><span class="err">&#39;</span>
+
+<span class="o">%</span><span class="nx">w</span><span class="p">{</span> <span class="nx">runit</span> <span class="nx">bluepill</span> <span class="nx">yum</span> <span class="p">}.</span><span class="nx">each</span> <span class="nx">do</span> <span class="p">|</span><span class="nx">cb</span><span class="p">|</span>
+ <span class="nx">recommends</span> <span class="nx">cb</span>
+<span class="nx">end</span>
+</code></pre></td></tr></table>
+</div>
+</div><hr>
+<ul>
+<li>attributes - Attributes define specific values about a node and its configuration
+and are used by the Chef client to apply those attributes to nodes via its
+attribute list. The chef client can receive attributes from nodes, attribute files,
+recipes, environments, and roles. Often attributes are used in conjunction with
+templates and recipes to define settings. :</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">default[&#39;nginx&#39;][&#39;version&#39;] = &#34;1.2.3&#34;
+default[&#39;nginx&#39;][&#39;dir&#39;] = &#34;/etc/nginx&#34;
+default[&#39;nginx&#39;][&#39;log_dir&#39;] = &#34;/var/log/nginx&#34;
+default[&#39;nginx&#39;][&#39;binary&#39;] = &#34;/usr/sbin/nginx&#34;
+</code></pre></td></tr></table>
+</div>
+</div><hr>
+<ul>
+<li>files - These are static files that can be uploaded to nodes. Files can be
+configuration and set-up files, scripts, website files. For example, you may
+have a recipe that uses an index.php file. You can use a cookbook_file resource
+block within a recipe to create the file on a node. All static files should be
+stored in a cookbook’s files directory</li>
+</ul>
+<hr>
+<ul>
+<li>recipes - a folder, which contain all recipes from this cookbook.
+Each recipe is in a separate Ruby file</li>
+</ul>
+<hr>
+<ul>
+<li>templates - are embedded Ruby files (.erb) that are used to dynamically
+create static text files. To use a template within a cookbook, you must
+declare a template resource in a recipe and include a corresponding .erb
+template file in a template subdirectory. Your template resource can contain
+variables that will then be used by the template to dynamically provide those
+values based on a nodes particular context.</li>
+</ul>
+<hr>
+<h3 id="example-databag">Example Databag</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">{
+  &#34;name&#34;:&#34;data_bag_item_dogs_tibetanspaniel&#34;,
+  &#34;json_class&#34;:&#34;Chef::DataBagItem&#34;,
+  &#34;chef_type&#34;:&#34;data_bag_item&#34;,
+  &#34;data_bag&#34;:&#34;dogs&#34;,
+  &#34;raw_data&#34;:
+    {
+      &#34;description&#34;:&#34;small dog that likes to sit in windows&#34;,
+      &#34;id&#34;:&#34;tibetanspaniel&#34;
+    }
+}
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="example-recipe">Example Recipe</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-go" data-lang="go"><span class="nx">vim_base_pkgs</span> <span class="p">=</span> <span class="nf">value_for_platform_family</span><span class="p">(</span>
+  <span class="o">%</span><span class="nf">w</span><span class="p">(</span><span class="nx">debian</span> <span class="nx">arch</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">[</span><span class="err">&#39;</span><span class="nx">vim</span><span class="err">&#39;</span><span class="p">],</span>
+  <span class="o">%</span><span class="nf">w</span><span class="p">(</span><span class="nx">rhel</span> <span class="nx">fedora</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">[</span><span class="err">&#39;</span><span class="nx">vim</span><span class="o">-</span><span class="nx">minimal</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="nx">vim</span><span class="o">-</span><span class="nx">enhanced</span><span class="err">&#39;</span><span class="p">],</span>
+  <span class="err">&#39;</span><span class="k">default</span><span class="err">&#39;</span> <span class="p">=&gt;</span> <span class="p">[</span><span class="err">&#39;</span><span class="nx">vim</span><span class="err">&#39;</span><span class="p">]</span>
+<span class="p">)</span>
+
+<span class="kn">package</span> <span class="nx">vim_base_pkgs</span>
+
+<span class="kn">package</span> <span class="nx">node</span><span class="p">[</span><span class="err">&#39;</span><span class="nx">vim</span><span class="err">&#39;</span><span class="p">][</span><span class="err">&#39;</span><span class="nx">extra_packages</span><span class="err">&#39;</span><span class="p">]</span> <span class="nx">unless</span> <span class="nx">node</span><span class="p">[</span><span class="err">&#39;</span><span class="nx">vim</span><span class="err">&#39;</span><span class="p">][</span><span class="err">&#39;</span><span class="nx">extra_packages</span><span class="err">&#39;</span><span class="p">].</span><span class="nx">empty</span><span class="err">?</span>
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="example-resource">Example Resource</h3>
+<h4 id="platform-resource-1">Platform Resource</h4>
+<p>Create a file in the <code>tmp/</code> folder named <code>hi</code> and set its content:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">file &#39;/tmp/hi&#39; do
+  content &#39;hi world&#39;
+end
+</code></pre></td></tr></table>
+</div>
+</div><p>Delete a file named as <code>hi</code> in the <code>tmp/</code> folder:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">file &#39;/tmp/hi&#39; do
+  action :delete
+end
+</code></pre></td></tr></table>
+</div>
+</div><p>Create a directory named as <code>something</code> and set some permissions:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">directory &#39;/tmp/something&#39; do
+  owner &#39;root&#39;
+  group &#39;root&#39;
+  mode 00755
+  action :create
+end
+</code></pre></td></tr></table>
+</div>
+</div><p>This is a Recipe, it is shown to highlight the differences
+in types of resources (package, services, built in).
+It consists of installing and setting up different services.
+N.B = calling a <code>package</code> will install it</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-go" data-lang="go"><span class="nx">apt_update</span> <span class="err">&#39;</span><span class="nx">Update</span> <span class="nx">the</span> <span class="nx">apt</span> <span class="nx">cache</span> <span class="nx">daily</span><span class="err">&#39;</span> <span class="nx">do</span>
+  <span class="nx">frequency</span> <span class="mi">86</span><span class="nx">_400</span>
+  <span class="nx">action</span> <span class="p">:</span><span class="nx">periodic</span>
+<span class="nx">end</span>
+
+<span class="kn">package</span> <span class="err">&#39;</span><span class="nx">apache2</span><span class="err">&#39;</span>
+
+<span class="nx">service</span> <span class="err">&#39;</span><span class="nx">apache2</span><span class="err">&#39;</span> <span class="nx">do</span>
+  <span class="nx">supports</span> <span class="nx">status</span><span class="p">:</span> <span class="kc">true</span>
+  <span class="nx">action</span> <span class="p">[:</span><span class="nx">enable</span><span class="p">,</span> <span class="p">:</span><span class="nx">start</span><span class="p">]</span>
+<span class="nx">end</span>
+
+<span class="nx">file</span> <span class="err">&#39;</span><span class="o">/</span><span class="kd">var</span><span class="o">/</span><span class="nx">www</span><span class="o">/</span><span class="nx">html</span><span class="o">/</span><span class="nx">index</span><span class="p">.</span><span class="nx">html</span><span class="err">&#39;</span> <span class="nx">do</span>
+  <span class="nx">content</span> <span class="err">&#39;</span><span class="p">&lt;</span><span class="nx">html</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nx">body</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nx">h1</span><span class="p">&gt;</span><span class="nx">hello</span> <span class="nx">world</span><span class="p">&lt;</span><span class="o">/</span><span class="nx">h1</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="o">/</span><span class="nx">body</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="o">/</span><span class="nx">html</span><span class="p">&gt;</span><span class="err">&#39;</span>
+<span class="nx">end</span>
+</code></pre></td></tr></table>
+</div>
+</div><h4 id="custom-resource-1">Custom Resource</h4>
+<p>Homepage is a property that sets the default HTML
+for the index.html file with a default value.
+The action block uses the built-in collection of resources to
+tell Chef Infra Client how to install Apache, start the service,
+and then create the contents of the file located at /var/www/html/index.html .
+action :create is the default resource, because it is listed first;
+action :delete must be called specifically (because it is not the default resource)</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-go" data-lang="go"><span class="nx">property</span> <span class="p">:</span><span class="nx">homepage</span><span class="p">,</span> <span class="nx">String</span><span class="p">,</span> <span class="k">default</span><span class="p">:</span> <span class="err">&#39;</span><span class="p">&lt;</span><span class="nx">h1</span><span class="p">&gt;</span><span class="nx">Hello</span> <span class="nx">world</span><span class="p">!&lt;</span><span class="o">/</span><span class="nx">h1</span><span class="p">&gt;</span><span class="err">&#39;</span>
+
+<span class="nx">action</span> <span class="p">:</span><span class="nx">create</span> <span class="nx">do</span>
+  <span class="kn">package</span> <span class="err">&#39;</span><span class="nx">httpd</span><span class="err">&#39;</span>
+
+  <span class="nx">service</span> <span class="err">&#39;</span><span class="nx">httpd</span><span class="err">&#39;</span> <span class="nx">do</span>
+    <span class="nx">action</span> <span class="p">[:</span><span class="nx">enable</span><span class="p">,</span> <span class="p">:</span><span class="nx">start</span><span class="p">]</span>
+  <span class="nx">end</span>
+
+  <span class="nx">file</span> <span class="err">&#39;</span><span class="o">/</span><span class="kd">var</span><span class="o">/</span><span class="nx">www</span><span class="o">/</span><span class="nx">html</span><span class="o">/</span><span class="nx">index</span><span class="p">.</span><span class="nx">html</span><span class="err">&#39;</span> <span class="nx">do</span>
+    <span class="nx">content</span> <span class="nx">new_resource</span><span class="p">.</span><span class="nx">homepage</span>
+  <span class="nx">end</span>
+<span class="nx">end</span>
+
+<span class="nx">action</span> <span class="p">:</span><span class="nx">delete</span> <span class="nx">do</span>
+  <span class="kn">package</span> <span class="err">&#39;</span><span class="nx">httpd</span><span class="err">&#39;</span> <span class="nx">do</span>
+    <span class="nx">action</span> <span class="p">:</span><span class="nx">delete</span>
+  <span class="nx">end</span>
+<span class="nx">end</span>
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="example-role">Example Role</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">{
+  &#34;name&#34;: &#34;base&#34;,
+  &#34;chef_type&#34;: &#34;role&#34;,
+  &#34;json_class&#34;: &#34;Chef::Role&#34;,
+  &#34;description&#34;: &#34;The base role for systems&#34;,
+  &#34;run_list&#34;: [
+    &#34;recipe[apt]&#34;,
+    &#34;recipe[sudo]&#34;,
+    &#34;recipe[sysctl]&#34;,
+    &#34;recipe[nginx::source]&#34;,
+    &#34;recipe[Tomatoes]&#34;
+  ]
+}
+</code></pre></td></tr></table>
+</div>
+</div></div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>Updated on 07-05-2020</span>
+            </div>
+            <div class="post-info-license"></div>
+        </div>
+        <div class="post-info-line">
+            <div class="post-info-md"><span>
+                            <a class="link-to-markdown" href="/chef/index.md" target="_blank">Read Markdown</a>
+                        </span></div>
+            <div class="post-info-share">
+                <span><a href="javascript:void(0);" title="Share on Twitter" data-sharer="twitter" data-url="https://FabioPezzini.github.io/chef/" data-title="Chef-Solo" data-via="......." data-hashtags="Chef,Orchestration,DevOps"><i class="fab fa-twitter fa-fw"></i></a><a href="javascript:void(0);" title="Share on Facebook" data-sharer="facebook" data-url="https://FabioPezzini.github.io/chef/" data-hashtag="Chef"><i class="fab fa-facebook-square fa-fw"></i></a><a href="javascript:void(0);" title="Share on WhatsApp" data-sharer="whatsapp" data-url="https://FabioPezzini.github.io/chef/" data-title="Chef-Solo" data-web><i class="fab fa-whatsapp fa-fw"></i></a><a href="javascript:void(0);" title="Share on Line" data-sharer="line" data-url="https://FabioPezzini.github.io/chef/" data-title="Chef-Solo"><i data-svg-src="/lib/simple-icons/icons/line.min.svg"></i></a><a href="javascript:void(0);" title="Share on 微博" data-sharer="weibo" data-url="https://FabioPezzini.github.io/chef/" data-title="Chef-Solo" data-image="/images/chef/index.png"><i class="fab fa-weibo fa-fw"></i></a><a href="javascript:void(0);" title="Share on Myspace" data-sharer="myspace" data-url="https://FabioPezzini.github.io/chef/" data-title="Chef-Solo" data-description="This article shows the basic Chef-Solo syntax and format."><i data-svg-src="/lib/simple-icons/icons/myspace.min.svg"></i></a><a href="javascript:void(0);" title="Share on Blogger" data-sharer="blogger" data-url="https://FabioPezzini.github.io/chef/" data-title="Chef-Solo" data-description="This article shows the basic Chef-Solo syntax and format."><i class="fab fa-blogger fa-fw"></i></a><a href="javascript:void(0);" title="Share on Evernote" data-sharer="evernote" data-url="https://FabioPezzini.github.io/chef/" data-title="Chef-Solo"><i class="fab fa-evernote fa-fw"></i></a></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/chef/">Chef</a>,&nbsp;<a href="/tags/orchestration/">Orchestration</a>,&nbsp;<a href="/tags/devops/">DevOps</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav">
+            <a href="/vagrant/" class="next" rel="next" title="Vagrant">Vagrant<i class="fas fa-angle-right fa-fw"></i></a></div>
+</div>
+</article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2020 - 2021</span>&nbsp;|&nbsp;<span class="license">Fabio Pezzini</span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="Back to Top">
+                <i class="fas fa-arrow-up fa-fw"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="View Comments">
+                <i class="fas fa-comment fa-fw"></i>
+            </a>
+        </div><link rel="stylesheet" href="/lib/lightgallery/lightgallery.min.css"><script type="text/javascript" src="/lib/smooth-scroll/smooth-scroll.min.js"></script><script type="text/javascript" src="/lib/autocomplete/autocomplete.min.js"></script><script type="text/javascript" src="/lib/lunr/lunr.min.js"></script><script type="text/javascript" src="/lib/lazysizes/lazysizes.min.js"></script><script type="text/javascript" src="/lib/lightgallery/lightgallery.min.js"></script><script type="text/javascript" src="/lib/lightgallery/lg-thumbnail.min.js"></script><script type="text/javascript" src="/lib/lightgallery/lg-zoom.min.js"></script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/sharer/sharer.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":10},"comment":{},"lightGallery":{"actualSize":false,"exThumbImage":"data-thumbnail","hideBarsDelay":2000,"selector":".lightgallery","speed":400,"thumbContHeight":80,"thumbWidth":80,"thumbnail":true},"search":{"highlightTag":"em","lunrIndexURL":"/index.json","maxResultLength":10,"noResultsFound":"No results found","snippetLength":30,"type":"lunr"}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+</html>
