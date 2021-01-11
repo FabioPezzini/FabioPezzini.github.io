@@ -37,21 +37,6 @@
  * Operating Systems: Windows, Linux
  * Software: Adobe Premiere Pro, Adobe Photoshop, Sony Vegas Pro, Blender, Office Suite
 
-### Software Projects
---------------------
-* *[ViugrUp](https://github.com/FabioPezzini/ViugrUp)*
-  :   An intuitive and easy to use program that create and manage complex virtual    environments using only an XML file.
-      
-      * Written in Ruby.
-      
-* *[ComicScraper](https://github.com/FabioPezzini/ComicScraper)*
-  :   An advanced and fast resource crawler developed for learning purpose.
-      It scrapes all the informations about the comics and download the covers of each comic.
-
-      * Written in Python3.
-      * Full integration with MongoDB.
-
-
 ### Personal Skills
 ----------------------------------------
 * Human Languages: 
